@@ -56,7 +56,7 @@ func (f *TExportPdfForm) OnFormCreate(sender vcl.IObject) {
 		// ================== 总重量累积和 标签组件 ==================
 		f.TotalWeightLabel = vcl.NewLabel(f)
 		f.TotalWeightLabel.SetParent(f)
-		f.TotalWeightLabel.SetCaption("总体积累积和")
+		f.TotalWeightLabel.SetCaption("总重量累积和")
 		f.TotalWeightLabel.SetFont(newFontBlack(-15, 11))
 		f.TotalWeightLabel.SetHeight(18)
 		f.TotalWeightLabel.SetWidth(92)
