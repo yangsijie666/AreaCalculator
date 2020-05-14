@@ -613,6 +613,7 @@ func (f *TMainForm) OnClearSpeedButtonClick(sender vcl.IObject) {
 			// 全部复位
 			initial.MyDisplay = models.NewDisplay()
 			initial.MyHistoryDisplay = models.NewHistoryDisplay()
+			initial.CurOperateNumber = 1
 			f.DisplayMemo.Lines().SetText(initial.MyDisplay.DisplayResult(mytypes.DisplayUnitDefault))
 			f.HistoryMemo.Lines().SetText(initial.MyHistoryDisplay.Display(mytypes.DisplayUnitDefault))
 		case mytypes.ClearCaption:
@@ -624,6 +625,7 @@ func (f *TMainForm) OnClearSpeedButtonClick(sender vcl.IObject) {
 			// 全部复位
 			initial.MyWeightDisplayer = models.NewWeightDisplayer()
 			initial.MyWeightHistoryDisplayer = models.NewWeightHistoryDisplayer()
+			initial.CurWeightOperateNumber = 1
 			f.DisplayMemo.Lines().SetText(initial.MyWeightDisplayer.DisplayWeightResult(mytypes.DisplayUnitDefault, mytypes.DisplayWeightUnitDefault))
 			f.HistoryMemo.Lines().SetText(initial.MyWeightHistoryDisplayer.Display(mytypes.DisplayUnitDefault, mytypes.DisplayWeightUnitDefault))
 		case mytypes.ClearCaption:
