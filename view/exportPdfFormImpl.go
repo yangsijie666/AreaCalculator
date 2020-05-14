@@ -1,8 +1,8 @@
 package main
 
 import (
-	"AreaCalculator/logic"
-	"AreaCalculator/models"
+	"AreaCalculator/initial"
+	"AreaCalculator/logic/pdf"
 	"AreaCalculator/tools"
 	mytypes "AreaCalculator/types"
 	"github.com/ying32/govcl/vcl"
@@ -29,27 +29,53 @@ func (f *TExportPdfForm) OnFormCreate(sender vcl.IObject) {
 		*maxHeight = f.Height()
 	})
 
-	// ================== 总面积累积和 标签组件 ==================
-	f.TotalAreaLabel = vcl.NewLabel(f)
-	f.TotalAreaLabel.SetParent(f)
-	f.TotalAreaLabel.SetCaption("总面积累积和")
-	f.TotalAreaLabel.SetFont(newFontBlack(-15, 11))
-	f.TotalAreaLabel.SetHeight(18)
-	f.TotalAreaLabel.SetWidth(92)
-	f.TotalAreaLabel.SetLeft(7)
-	f.TotalAreaLabel.SetTop(11)
-	f.TotalAreaLabel.SetParentColor(false)
+	if MainForm.Caption() == mytypes.AreaCalculator {
+		// ================== 总面积累积和 标签组件 ==================
+		f.TotalAreaLabel = vcl.NewLabel(f)
+		f.TotalAreaLabel.SetParent(f)
+		f.TotalAreaLabel.SetCaption("总面积累积和")
+		f.TotalAreaLabel.SetFont(newFontBlack(-15, 11))
+		f.TotalAreaLabel.SetHeight(18)
+		f.TotalAreaLabel.SetWidth(92)
+		f.TotalAreaLabel.SetLeft(7)
+		f.TotalAreaLabel.SetTop(11)
+		f.TotalAreaLabel.SetParentColor(false)
 
-	// ================== 总面积累积和 编辑框组件 ==================
-	f.TotalAreaEdit = vcl.NewEdit(f)
-	f.TotalAreaEdit.SetParent(f)
-	f.TotalAreaEdit.SetFont(newFontBlack(-13, 10))
-	f.TotalAreaEdit.SetHeight(22)
-	f.TotalAreaEdit.SetWidth(71)
-	f.TotalAreaEdit.SetLeft(101)
-	f.TotalAreaEdit.SetTop(7)
-	f.TotalAreaEdit.SetParentColor(false)
-	f.TotalAreaEdit.SetTabOrder(0)
+		// ================== 总面积累积和 编辑框组件 ==================
+		f.TotalAreaEdit = vcl.NewEdit(f)
+		f.TotalAreaEdit.SetParent(f)
+		f.TotalAreaEdit.SetFont(newFontBlack(-13, 10))
+		f.TotalAreaEdit.SetHeight(22)
+		f.TotalAreaEdit.SetWidth(71)
+		f.TotalAreaEdit.SetLeft(101)
+		f.TotalAreaEdit.SetTop(7)
+		f.TotalAreaEdit.SetParentColor(false)
+		f.TotalAreaEdit.SetTabOrder(0)
+		f.TotalAreaEdit.SetText(initial.MyDisplay.SumArea(mytypes.DisplayUnitDefault))
+	} else {
+		// ================== 总重量累积和 标签组件 ==================
+		f.TotalWeightLabel = vcl.NewLabel(f)
+		f.TotalWeightLabel.SetParent(f)
+		f.TotalWeightLabel.SetCaption("总体积累积和")
+		f.TotalWeightLabel.SetFont(newFontBlack(-15, 11))
+		f.TotalWeightLabel.SetHeight(18)
+		f.TotalWeightLabel.SetWidth(92)
+		f.TotalWeightLabel.SetLeft(7)
+		f.TotalWeightLabel.SetTop(11)
+		f.TotalWeightLabel.SetParentColor(false)
+
+		// ================== 总重量累积和 编辑框组件 ==================
+		f.TotalWeightEdit = vcl.NewEdit(f)
+		f.TotalWeightEdit.SetParent(f)
+		f.TotalWeightEdit.SetFont(newFontBlack(-13, 10))
+		f.TotalWeightEdit.SetHeight(22)
+		f.TotalWeightEdit.SetWidth(71)
+		f.TotalWeightEdit.SetLeft(101)
+		f.TotalWeightEdit.SetTop(7)
+		f.TotalWeightEdit.SetParentColor(false)
+		f.TotalWeightEdit.SetTabOrder(0)
+		f.TotalWeightEdit.SetText(initial.MyWeightDisplayer.SumWeight(mytypes.DisplayWeightUnitDefault))
+	}
 
 	// ================== 显示单位 标签组件 ==================
 	f.DisplayUnit = vcl.NewLabel(f)
@@ -72,15 +98,21 @@ func (f *TExportPdfForm) OnFormCreate(sender vcl.IObject) {
 	f.DisplayUnitComboBox.SetTop(8)
 	f.DisplayUnitComboBox.SetItemHeight(26)
 	f.DisplayUnitComboBox.SetStyle(types.CsDropDownList)
-	f.DisplayUnitComboBox.Items().Add("平方毫米")
-	f.DisplayUnitComboBox.Items().Add("平方厘米")
-	f.DisplayUnitComboBox.Items().Add("平方分米")
-	f.DisplayUnitComboBox.Items().Add("平方米")
-	f.DisplayUnitComboBox.SetItemIndex(int32(mytypes.CM))
+	if MainForm.Caption() == mytypes.AreaCalculator {
+		f.DisplayUnitComboBox.Items().Add("平方毫米")
+		f.DisplayUnitComboBox.Items().Add("平方厘米")
+		f.DisplayUnitComboBox.Items().Add("平方分米")
+		f.DisplayUnitComboBox.Items().Add("平方米")
+		f.DisplayUnitComboBox.SetItemIndex(int32(mytypes.DisplayUnitDefault))
+	} else {
+		f.DisplayUnitComboBox.Items().Add("毫克")
+		f.DisplayUnitComboBox.Items().Add("克")
+		f.DisplayUnitComboBox.Items().Add("千克")
+		f.DisplayUnitComboBox.Items().Add("吨")
+		f.DisplayUnitComboBox.SetItemIndex(int32(mytypes.DisplayWeightUnitDefault))
+	}
 	f.DisplayUnitComboBox.SetParentColor(false)
 	f.DisplayUnitComboBox.SetTabOrder(1)
-
-	f.TotalAreaEdit.SetText(logic.MyDisplay.SumArea(mytypes.CM))
 
 	// ================== 物体总数 标签组件 ==================
 	f.TotalNumberLabel = vcl.NewLabel(f)
@@ -104,7 +136,11 @@ func (f *TExportPdfForm) OnFormCreate(sender vcl.IObject) {
 	f.TotalNumberEdit.SetTop(35)
 	f.TotalNumberEdit.SetParentColor(false)
 	f.TotalNumberEdit.SetTabOrder(2)
-	f.TotalNumberEdit.SetText(logic.MyDisplay.TotalNumber())
+	if MainForm.Caption() == mytypes.AreaCalculator {
+		f.TotalNumberEdit.SetText(initial.MyDisplay.TotalNumber())
+	} else {
+		f.TotalNumberEdit.SetText(initial.MyWeightDisplayer.TotalNumber())
+	}
 
 	// ================== 导出物体总数 复选框组件 ==================
 	f.TotalNumberCheckBox = vcl.NewCheckBox(f)
@@ -350,7 +386,11 @@ func (f *TExportPdfForm) OnFormCreate(sender vcl.IObject) {
 	f.FontOpenDialog = vcl.NewOpenDialog(f)
 
 	f.DisplayUnitComboBox.SetOnSelect(func(sender vcl.IObject) {
-		f.TotalAreaEdit.SetText(logic.MyDisplay.SumArea(mytypes.Unit(f.DisplayUnitComboBox.ItemIndex())))
+		if MainForm.Caption() == mytypes.AreaCalculator {
+			f.TotalAreaEdit.SetText(initial.MyDisplay.SumArea(mytypes.Unit(f.DisplayUnitComboBox.ItemIndex())))
+		} else {
+			f.TotalWeightEdit.SetText(initial.MyWeightDisplayer.SumWeight(mytypes.WeightUnit(f.DisplayUnitComboBox.ItemIndex())))
+		}
 	})
 }
 
@@ -406,7 +446,13 @@ func (f *TExportPdfForm) OnExportButtonClick(sender vcl.IObject) {
 
 	if f.ExportSaveDialog.Execute() {
 
-		totalArea := f.TotalAreaEdit.Text()
+		var totalArea string
+		var totalWeight string
+		if MainForm.Caption() == mytypes.AreaCalculator {
+			totalArea = f.TotalAreaEdit.Text()
+		} else {
+			totalWeight = f.TotalWeightEdit.Text()
+		}
 		totalNumber := ""
 		if f.TotalNumberCheckBox.Checked() {
 			// 导出物体总数
@@ -457,12 +503,26 @@ func (f *TExportPdfForm) OnExportButtonClick(sender vcl.IObject) {
 			timeStamp = temp1Str + " " + strings.Join(temp2, ":")
 		}
 
-		pdfController := models.NewPdfController(totalArea, totalNumber, remark, timeStamp, timeFormt, f.ExportSaveDialog.FileName(), useSysTime, mytypes.Unit(f.DisplayUnitComboBox.ItemIndex()))
-		if err := pdfController.PrintWorkOrderInPdfFormat(newFontPath); err != nil {
-			vcl.ShowMessage(err.Error())
-			f.Close()
-			return
+		var pdfController *pdf.PdfController
+		var pdfWeightController *pdf.PdfWeightController
+		if MainForm.Caption() == mytypes.AreaCalculator {
+			pdfController = pdf.NewPdfController(totalArea, totalNumber, remark, timeStamp, timeFormt,
+				f.ExportSaveDialog.FileName(), useSysTime, mytypes.Unit(f.DisplayUnitComboBox.ItemIndex()))
+			if err := pdfController.PrintWorkOrderInPdfFormat(newFontPath); err != nil {
+				vcl.ShowMessage(err.Error())
+				f.Close()
+				return
+			}
+		} else {
+			pdfWeightController = pdf.NewPdfWeightController(totalWeight, totalNumber, remark, timeStamp, timeFormt,
+				f.ExportSaveDialog.FileName(), useSysTime, mytypes.WeightUnit(f.DisplayUnitComboBox.ItemIndex()))
+			if err := pdfWeightController.WeightPrintWorkOrderInPdfFormat(newFontPath); err != nil {
+				vcl.ShowMessage(err.Error())
+				f.Close()
+				return
+			}
 		}
+
 		vcl.ShowMessage(mytypes.SaveSuccess)
 		f.Close()
 	}

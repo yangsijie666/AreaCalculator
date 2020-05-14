@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "AreaCalculator/initial"
 	"github.com/ying32/govcl/vcl"
 )
 

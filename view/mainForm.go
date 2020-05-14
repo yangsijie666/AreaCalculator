@@ -26,13 +26,25 @@ type TMainForm struct {
 	CubeCheckBox        *vcl.TCheckBox
 	UnitDisplayLabel    *vcl.TLabel
 	DisplayUnitComboBox *vcl.TComboBox
-	PlusSpeedButton     *vcl.TSpeedButton
-	MinusSpeedButton    *vcl.TSpeedButton
-	ClearSpeedButton    *vcl.TSpeedButton
 
-	MainMenu          *vcl.TMainMenu
-	ExportMenuItem    *vcl.TMenuItem
-	ExportPdfMenuItem *vcl.TMenuItem
+	DensityLabel              *vcl.TLabel
+	DensityEdit               *vcl.TEdit
+	DensityWeightUnit         *vcl.TComboBox
+	DensityEveryLabel         *vcl.TLabel
+	DensityVolumeUnit         *vcl.TComboBox
+	WeightUnitDisplayLabel    *vcl.TLabel
+	WeightUnitDisplayComboBox *vcl.TComboBox
+
+	PlusSpeedButton  *vcl.TSpeedButton
+	MinusSpeedButton *vcl.TSpeedButton
+	ClearSpeedButton *vcl.TSpeedButton
+
+	MainMenu                     *vcl.TMainMenu
+	CalculatorTypeMenuItem       *vcl.TMenuItem
+	AreaCalculatorTypeMenuItem   *vcl.TMenuItem
+	WeightCalculatorTypeMenuItem *vcl.TMenuItem
+	ExportMenuItem               *vcl.TMenuItem
+	ExportPdfMenuItem            *vcl.TMenuItem
 }
 
 var MainForm *TMainForm

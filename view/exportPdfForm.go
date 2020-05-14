@@ -3,39 +3,43 @@
 package main
 
 import (
-    "github.com/ying32/govcl/vcl"
+	"github.com/ying32/govcl/vcl"
 )
 
 type TExportPdfForm struct {
-    *vcl.TForm
-    TotalAreaLabel      *vcl.TLabel
-    TotalAreaEdit       *vcl.TEdit
-    DisplayUnit         *vcl.TLabel
-    DisplayUnitComboBox *vcl.TComboBox
-    TotalNumberLabel    *vcl.TLabel
-    TotalNumberEdit     *vcl.TEdit
-    TotalNumberCheckBox *vcl.TCheckBox
-    DateFormat          *vcl.TLabel
-    DateFormatComboBox  *vcl.TComboBox
-    CustomDate          *vcl.TCheckBox
-    YearLabel           *vcl.TLabel
-    MonthLabel          *vcl.TLabel
-    DayLabel            *vcl.TLabel
-    YearEdit            *vcl.TEdit
-    MonthEdit           *vcl.TEdit
-    DayEdit             *vcl.TEdit
-    HourLabel           *vcl.TLabel
-    MinuteLabel         *vcl.TLabel
-    SecondLabel         *vcl.TLabel
-    HourEdit            *vcl.TEdit
-    MinuteEdit          *vcl.TEdit
-    SecondEdit          *vcl.TEdit
-    RemarkLabel         *vcl.TLabel
-    RemarkEdit          *vcl.TEdit
-    ExportButton        *vcl.TButton
+	*vcl.TForm
+	TotalAreaLabel *vcl.TLabel
+	TotalAreaEdit  *vcl.TEdit
 
-    ExportSaveDialog    *vcl.TSaveDialog
-    FontOpenDialog      *vcl.TOpenDialog
+	TotalWeightLabel *vcl.TLabel
+	TotalWeightEdit  *vcl.TEdit
+
+	DisplayUnit         *vcl.TLabel
+	DisplayUnitComboBox *vcl.TComboBox
+	TotalNumberLabel    *vcl.TLabel
+	TotalNumberEdit     *vcl.TEdit
+	TotalNumberCheckBox *vcl.TCheckBox
+	DateFormat          *vcl.TLabel
+	DateFormatComboBox  *vcl.TComboBox
+	CustomDate          *vcl.TCheckBox
+	YearLabel           *vcl.TLabel
+	MonthLabel          *vcl.TLabel
+	DayLabel            *vcl.TLabel
+	YearEdit            *vcl.TEdit
+	MonthEdit           *vcl.TEdit
+	DayEdit             *vcl.TEdit
+	HourLabel           *vcl.TLabel
+	MinuteLabel         *vcl.TLabel
+	SecondLabel         *vcl.TLabel
+	HourEdit            *vcl.TEdit
+	MinuteEdit          *vcl.TEdit
+	SecondEdit          *vcl.TEdit
+	RemarkLabel         *vcl.TLabel
+	RemarkEdit          *vcl.TEdit
+	ExportButton        *vcl.TButton
+
+	ExportSaveDialog *vcl.TSaveDialog
+	FontOpenDialog   *vcl.TOpenDialog
 }
 
 var ExportPdfForm *TExportPdfForm

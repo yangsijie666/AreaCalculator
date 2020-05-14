@@ -1,31 +1,48 @@
 package types
 
 const (
-    AllClearCaption = "AC"
-    ClearCaption = "C"
+	AreaCalculator   = "面积计算器"
+	WeightCalculator = "重量计算器"
 
-    DisplayUnitDefault = CM
+	AllClearCaption = "AC"
+	ClearCaption    = "C"
 
-    DefaultLength = "0.0"
-    DefaultWidth = "0.0"
-    DefaultHeight = "0.0"
-    DefaultNumber = "1"
+	DisplayUnitDefault       = CM
+	DisplayWeightUnitDefault = G
 
-    DisplayResultInitStr = `长  0    宽  0    高  0
+	DefaultLength  = "0.0"
+	DefaultWidth   = "0.0"
+	DefaultHeight  = "0.0"
+	DefaultNumber  = "1"
+	DefaultDensity = "0.0"
+
+	DisplayResultInitStr = `长  0    宽  0    高  0
 数量  0
 面积  0
 ------------------------------------------------
 物体总数  0
 总面积  0`
 
-    DisplayResultStr = `
+	DisplayResultStr = `
 ------------------------------------------------
 物体总数  %d
 总面积  %s`
 
-    HistoryDisplayDefaultStr = "历史记录"
+	WeightDisplayResultInitStr = `长  0    宽  0    高  0
+数量  0
+重量  0
+------------------------------------------------
+物体总数  0
+总重量  0`
 
-    OperationDisplayStr = `编号 No.%d
+	WeightDisplayResultStr = `
+------------------------------------------------
+物体总数  %d
+总重量  %s`
+
+	HistoryDisplayDefaultStr = "历史记录"
+
+	OperationDisplayStr = `编号 No.%d
 "%s" 操作
 -----------------------
 %s
@@ -35,24 +52,44 @@ const (
 ========================
 `
 
-    CuboidsDisplayStr = `长  %s    宽  %s    高  %s
+	OperationWeightDisplayStr = `编号 No.%d
+"%s" 操作
+-----------------------
+%s
+-----------------------
+物体总数  %d
+总体积  %s
+========================
+`
+
+	CuboidsDisplayStr = `长  %s    宽  %s    高  %s
 数量  %d
 面积  %s`
 
-    CubesDisplayStr = `长  %s
+	CuboidsWeightDisplayStr = `长  %s    宽  %s    高  %s
+数量  %d
+重量  %s`
+
+	CubesDisplayStr = `长  %s
 数量  %d
 面积  %s`
 
-    ErrMsgTemplate = "\"%s\" 输入有误! 输入的值为\"%s\", 应为大于\"0\"的数"
-    NumberErrMsgTemplate = "\"立方体数量\" 输入有误! 输入的值为\"%s\", 应为大于等于\"1\"的整数"
+	CubesWeightDisplayStr = `长  %s
+数量  %d
+重量  %s`
 
-    UnknownError = "未知错误"
-    SaveSuccess = "导出成功"
+	ErrMsgTemplate       = "\"%s\" 输入有误! 输入的值为\"%s\", 应为大于\"0\"的数"
+	NumberErrMsgTemplate = "\"立方体数量\" 输入有误! 输入的值为\"%s\", 应为大于等于\"1\"的整数"
 
-    DefaultFontDir = "./simhei.ttf"
-    DefaultWindowsFontDir = `C:\Windows\Fonts\simhei.ttf`
-    DefaultMacFontDir = "/System/Library/Fonts/simhei.ttf"
+	UnknownError = "未知错误"
+	SaveSuccess  = "导出成功"
 
-    CanNotFindFontFile = "未找到字体文件"
-    FontFileExtError = "仅支持 .ttf 格式的字体文件"
+	DefaultFontDir        = "./simhei.ttf"
+	DefaultWindowsFontDir = `C:\Windows\Fonts\simhei.ttf`
+	DefaultMacFontDir     = "/System/Library/Fonts/simhei.ttf"
+
+	CanNotFindFontFile = "未找到字体文件"
+	FontFileExtError   = "仅支持 .ttf 格式的字体文件"
+
+	WeightInfoNonexistent = "重量信息不存在"
 )
